@@ -108,8 +108,10 @@ public class LotteryTicket {
 
     private int red6;
 
-    public Integer[] toArray() {
-        return new Integer[]{red1, red2, red3, red4, red5, red6, blue};
+    public Integer[] toArray(boolean isBlue) {
+        if (isBlue)
+            return new Integer[]{blue};
+        return new Integer[]{red1, red2, red3, red4, red5, red6};
     }
 
     @Override

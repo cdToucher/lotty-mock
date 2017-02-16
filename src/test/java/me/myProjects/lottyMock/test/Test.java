@@ -1,7 +1,11 @@
+package me.myProjects.lottyMock.test;
+
 import me.myProjects.lottyMock.bean.LotteryTicket;
+import me.myProjects.lottyMock.bean.LottyNumber;
 import me.myProjects.lottyMock.excel.Processor;
 import me.myProjects.lottyMock.excel.ReadLottyDataExcel;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,9 +21,12 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         print("great zhong le !!!");
-
         List<LotteryTicket> dataList = ReadLottyDataExcel.readData();
-        Processor.getSequence(dataList, 1);
+        LottyNumber[] blue = Processor.setBlueLotty(dataList);
+        LottyNumber[] red = Processor.setRedLotty(dataList);
+
+        Arrays.stream(blue).forEach(lottyNumber -> print(lottyNumber.getAd()));
+        Arrays.stream(red).forEach(lottyNumber -> print(lottyNumber.getAd()));
     }
 
 }

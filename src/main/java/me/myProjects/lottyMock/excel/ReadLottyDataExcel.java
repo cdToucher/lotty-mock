@@ -3,7 +3,6 @@ package me.myProjects.lottyMock.excel;
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import me.myProjects.lottyMock.bean.LotteryTicket;
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -21,7 +20,7 @@ import java.util.List;
 public class ReadLottyDataExcel {
 
     public static List<LotteryTicket> readData() throws IOException {
-        ByteArrayInputStream stream = new ByteArrayInputStream(Files.toByteArray(new File("E://ssq.xls")));
+        ByteArrayInputStream stream = new ByteArrayInputStream(Files.toByteArray(new File("E://ssq1.xls")));
         HSSFSheet sheet = new HSSFWorkbook(stream).getSheetAt(0);
         List<LotteryTicket> dataList = Lists.newArrayList();
         for (int i = 2; i < sheet.getLastRowNum(); i++) {
