@@ -21,9 +21,9 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         print("great zhong le !!!");
-        List<LotteryTicket> dataList = ReadLottyDataExcel.readData();
-        LottyNumber[] blue = Processor.setBlueLotty(dataList);
-        LottyNumber[] red = Processor.setRedLotty(dataList);
+        List<LotteryTicket> dataList = ReadLottyDataExcel.readData("E://ssq1.xls");
+        LottyNumber[] blue = Processor.getBlueLotty(dataList);
+        LottyNumber[] red = Processor.getRedLotty(dataList);
 
         Arrays.stream(blue).forEach(lottyNumber -> print(lottyNumber.getAd()));
         Arrays.stream(red).forEach(lottyNumber -> print(lottyNumber.getAd()));

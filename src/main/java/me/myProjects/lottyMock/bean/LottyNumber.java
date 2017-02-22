@@ -76,14 +76,14 @@ public class LottyNumber {
 
     private double ad; // 算数平均差
 
-    public double getClose() {
-        return close;
+    public double getScore() {
+        return score;
     }
 
-    public void setClose(double close) {
-        this.close = close;
+    public void setScore(double score) {
+        this.score = score;
     }
 
-    private double close;
+    private double score;
 
 }

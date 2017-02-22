@@ -68,11 +68,11 @@ public class Processor {
         return lottyNumbers;
     }
 
-    public static LottyNumber[] setRedLotty(List<LotteryTicket> data) {
+    public static LottyNumber[] getRedLotty(List<LotteryTicket> data) {
         return setLotty(data, 33, false);
     }
 
-    public static LottyNumber[] setBlueLotty(List<LotteryTicket> data) {
+    public static LottyNumber[] getBlueLotty(List<LotteryTicket> data) {
         return setLotty(data, 16, true);
     }
 }

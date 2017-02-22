@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class ReadLottyDataExcel {
 
-    public static List<LotteryTicket> readData() throws IOException {
-        ByteArrayInputStream stream = new ByteArrayInputStream(Files.toByteArray(new File("E://ssq1.xls")));
+    public static List<LotteryTicket> readData(String path) throws IOException {
+        ByteArrayInputStream stream = new ByteArrayInputStream(Files.toByteArray(new File(path)));
         HSSFSheet sheet = new HSSFWorkbook(stream).getSheetAt(0);
         List<LotteryTicket> dataList = Lists.newArrayList();
         for (int i = 2; i < sheet.getLastRowNum(); i++) {

@@ -1,11 +1,25 @@
 package me.myProjects.lottyMock.bean;
 
+import java.util.List;
+
 /**
  * Created by CD on 2017/2/6.
  * <p>
  * lotty bean
  */
 public class LotteryTicket {
+
+    public LotteryTicket(){}
+
+    public LotteryTicket(LottyNumber blue, List<LottyNumber> red) {
+        this.red1 = red.get(0).getNum();
+        this.red2 = red.get(1).getNum();
+        this.red3 = red.get(2).getNum();
+        this.red4 = red.get(3).getNum();
+        this.red5 = red.get(4).getNum();
+        this.red6 = red.get(5).getNum();
+        this.blue = blue.getNum();
+    }
 
 
     public int getId() {
