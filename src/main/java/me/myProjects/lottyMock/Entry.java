@@ -12,8 +12,15 @@ import java.io.IOException;
  */
 public class Entry {
 
+
+    private static void print(Object object) {
+        System.out.println(object);
+    }
+
     public static void main(String[] args) throws IOException {
-        LotteryTicket ticket = LottyMock.Builder().setAlgorithm(new Normal()).setMock(true).setPath("").process();
-        System.out.println(ticket);
+        print("great zhong le !!!");
+        String path = "E://ssq1.xls";
+        LotteryTicket ticket = LottyMock.Builder().setMock(false).process(path);
+        print(ticket.toString());
     }
 }

@@ -1,5 +1,6 @@
 package me.myProjects.lottyMock.bean;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -130,7 +131,7 @@ public class LotteryTicket {
 
     @Override
     public String toString() {
-        return blue + " " + red1 + " " + red2 + " " + red3 + " " + red4 + " " + red5 + " " + red6;
+        return Arrays.toString(Arrays.stream(toArray(false)).sorted().toArray()) + Arrays.toString(toArray(true));
     }
 
 }
