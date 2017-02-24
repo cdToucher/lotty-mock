@@ -1,2 +1,2 @@
 # lottyMock
-lotty  mock 
+lotty mock 无聊之物 白日之梦
