@@ -1,6 +1,8 @@
 package me.myProjects.lottyMock;
 
+import com.sun.istack.internal.NotNull;
 import me.myProjects.lottyMock.algorithms.Algorithm;
+import me.myProjects.lottyMock.algorithms.Normal;
 import me.myProjects.lottyMock.bean.LotteryTicket;
 import me.myProjects.lottyMock.excel.ReadLottyDataExcel;
 
@@ -37,20 +39,15 @@ public class LottyMock {
         return this;
     }
 
-    public LottyMock setPath(String path) {
-        builder.path = path;
-        return this;
-    }
-
-    public LotteryTicket process() throws IOException {
-        List<LotteryTicket> data = ReadLottyDataExcel.readData(builder.path);
+    public LotteryTicket process(@NotNull String path) throws IOException {
+        List<LotteryTicket> data = ReadLottyDataExcel.readData(path);
+        if (builder.algorithm == null)
+            builder.algorithm = new Normal();
         builder.algorithm.setDataList(data);
         return builder.algorithm.calculation(builder.mock, builder.fetchSize);
     }
 
     private static class Builder {
-
-        private String path;
 
         private boolean mock = false;
 
