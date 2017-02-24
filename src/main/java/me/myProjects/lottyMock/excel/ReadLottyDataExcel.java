@@ -28,7 +28,7 @@ public class ReadLottyDataExcel {
             HSSFRow row = sheet.getRow(i);
             if ((int) (row.getCell(2).getNumericCellValue()) == 0)
                 continue;
-            ticket.setId(i - 2);
+            ticket.setId(i - 1);
             ticket.setIssue(String.valueOf(row.getCell(0).getNumericCellValue()));
             ticket.setDate(row.getCell(1).getStringCellValue());
             ticket.setRed1((int) (row.getCell(2).getNumericCellValue()));
