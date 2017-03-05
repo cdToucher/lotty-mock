@@ -37,16 +37,18 @@ public abstract class Algorithm {
     }
 
     public LotteryTicket getMatch() {
-
-        List<LottyNumber> top6 = Arrays.stream(this.red)
+        List<LottyNumber> lottyRed = Arrays.stream(this.red)
                 .sorted(Comparator.comparing(LottyNumber::getScore))
-                .collect(Collectors.toList())
-                .subList(0, 6);
-        LottyNumber top1 = Arrays.stream(this.blue)
+                .collect(Collectors.toList());
+        List<LottyNumber> top6 = lottyRed.subList(0, 6);
+        List<LottyNumber> lottyBlue = Arrays.stream(this.blue)
                 .sorted(Comparator.comparing(LottyNumber::getScore))
-                .collect(Collectors.toList()).get(0);
-
-        return new LotteryTicket(top1, top6);
+                .collect(Collectors.toList());
+        lottyRed.forEach(row -> System.out.print(row.getNum() + " "));
+        System.out.println();
+        lottyBlue.forEach(row -> System.out.print(row.getNum() + " "));
+        System.out.println();
+        return new LotteryTicket(lottyBlue.get(0), top6);
     }
 
     public void mock() {

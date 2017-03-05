@@ -57,6 +57,15 @@ public class LottyMock {
         return builder.algorithm.calculation(builder.mock, builder.fetchSize);
     }
 
+    public LotteryTicket processTimes(@NotNull String path, int from, int to) throws IOException {
+        List<LotteryTicket> data = ReadLottyDataExcel.readDataFromNet();
+        if (builder.algorithm == null)
+            builder.algorithm = new Normal();
+        builder.algorithm.setDataList(data);
+        System.out.println("calculation...");
+        return builder.algorithm.calculation(builder.mock, builder.fetchSize);
+    }
+
     private static class Builder {
 
         private boolean mock = false;

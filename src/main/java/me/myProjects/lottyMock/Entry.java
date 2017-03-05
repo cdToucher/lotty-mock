@@ -19,7 +19,7 @@ public class Entry {
         final String path = "E://ssq.xls";
 
         print("great price !!!");
-        LotteryTicket ticket = LottyMock.Builder().setFetchSize(300).process(path);
+        LotteryTicket ticket = LottyMock.Builder().setFetchSize(230).process(path);
         print("this term's answer is "+ticket.toString());
     }
 }
