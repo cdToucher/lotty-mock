@@ -40,10 +40,20 @@ public class LottyMock {
     }
 
     public LotteryTicket process(@NotNull String path) throws IOException {
-        List<LotteryTicket> data = ReadLottyDataExcel.readData(path);
+        List<LotteryTicket> data = ReadLottyDataExcel.readDataFromExcel(path);
         if (builder.algorithm == null)
             builder.algorithm = new Normal();
         builder.algorithm.setDataList(data);
+        System.out.println("calculation...");
+        return builder.algorithm.calculation(builder.mock, builder.fetchSize);
+    }
+
+    public LotteryTicket process() throws IOException {
+        List<LotteryTicket> data = ReadLottyDataExcel.readDataFromNet();
+        if (builder.algorithm == null)
+            builder.algorithm = new Normal();
+        builder.algorithm.setDataList(data);
+        System.out.println("calculation...");
         return builder.algorithm.calculation(builder.mock, builder.fetchSize);
     }
 

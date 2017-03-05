@@ -3,6 +3,10 @@ package me.myProjects.lottyMock.excel;
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import me.myProjects.lottyMock.bean.LotteryTicket;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -10,6 +14,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -19,9 +24,23 @@ import java.util.List;
  */
 public class ReadLottyDataExcel {
 
-    public static List<LotteryTicket> readData(String path) throws IOException {
+    private static final String xlsUrl = "http://www.17500.cn/getData/ssq.xls";
+
+    public static List<LotteryTicket> readDataFromExcel(String path) throws IOException {
         ByteArrayInputStream stream = new ByteArrayInputStream(Files.toByteArray(new File(path)));
-        HSSFSheet sheet = new HSSFWorkbook(stream).getSheetAt(0);
+        return readData(stream);
+    }
+
+    public static List<LotteryTicket> readDataFromNet() throws IOException {
+        System.out.println("start to download latest data from net...");
+        HttpUriRequest request = new HttpGet(xlsUrl);
+        CloseableHttpResponse closeableHttpResponse = HttpClients.createDefault().execute(request);
+        InputStream inputStream = closeableHttpResponse.getEntity().getContent();
+        return readData(inputStream);
+    }
+
+    private static List<LotteryTicket> readData(InputStream inputStream) throws IOException {
+        HSSFSheet sheet = new HSSFWorkbook(inputStream).getSheetAt(0);
         List<LotteryTicket> dataList = Lists.newArrayList();
         for (int i = 2; i < sheet.getLastRowNum(); i++) {
             LotteryTicket ticket = new LotteryTicket();
@@ -40,7 +59,7 @@ public class ReadLottyDataExcel {
             ticket.setBlue((int) row.getCell(8).getNumericCellValue());
             dataList.add(ticket);
         }
+        System.out.println("read lotty data finished.");
         return dataList;
     }
-
 }

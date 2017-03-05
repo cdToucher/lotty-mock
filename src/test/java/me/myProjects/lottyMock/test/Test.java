@@ -22,9 +22,6 @@ public class Test {
     }
 
     public static void main(String[] args) throws Exception {
-        print("great zhong le !!!");
-        String path  = "E://ssq1.xls";
-        LottyMock.Builder().setAlgorithm(new Normal()).setMock(false).process(path);
     }
 
 }
