@@ -3,6 +3,7 @@ package me.myProjects.lottyMock.excel;
 import me.myProjects.lottyMock.bean.LotteryTicket;
 import me.myProjects.lottyMock.bean.LottyNumber;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -46,11 +47,7 @@ public class Processor {
     }
 
     private static double getAverage(Integer[] sequence) {
-        double total = 0D;
-        for (Integer integer : sequence) {
-            total += integer;
-        }
-        return total / sequence.length;
+        return Arrays.stream(sequence).mapToDouble(Integer::doubleValue).sum() / sequence.length;
     }
 
     private static LottyNumber[] setLotty(List<LotteryTicket> data, int size, boolean isBlue) {
